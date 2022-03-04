@@ -44,21 +44,33 @@
     <p>
     {{feedback | json}}
     </p>
-    <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+    <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
       <p>
         <mat-form-field class="half-width">
           <input matInput formControlName="firstName" placeholder="First Name" type="text" required>
+          <mat-error *ngIf="feedbackForm.get('firstName').hasError('required') && feedbackForm.get('firstName').touched">
+            first name is required
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="half-width">
-          <input matInput formControlName="lastName" placeholder="LastName" type="text" required>
+          <input matInput formControlName="lastName" placeholder="Last Name" type="text" required>
+          <mat-error *ngIf="feedbackForm.get('lastName').hasError('required') && feedbackForm.get('lastName').touched">
+            last name is required
+          </mat-error>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field class="half-width">
           <input matInput formControlName="telNum" placeholder="Telephone" type="tel" required>
+          <mat-error *ngIf="feedbackForm.get('telNum').hasError('required') && feedbackForm.get('telNum').touched">
+            telephone is required
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="half-width">
           <input matInput formControlName="email" placeholder="Email" type="email" required>
+          <mat-error *ngIf="feedbackForm.get('email').hasError('required') && feedbackForm.get('email').touched">
+            email is required
+          </mat-error>
         </mat-form-field>
       </p>
       <table class="form-size">
@@ -81,7 +93,8 @@
           <textarea matInput formControlName="message" placeholder="Your Feedback" rows=12></textarea>
         </mat-form-field>
       </p>
-      <button type="submit" mat-button class="background-primary text-floral-white">Submit</button>
+      <button type="submit" mat-button class="background-primary text-floral-white"
+      [disabled]="feedbackForm.invalid">Submit</button>
     </form>
   </div>
 </div>
