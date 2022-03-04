@@ -54,7 +54,7 @@
   </div>
 
 
-  <div fxFlex>
+  <div fxFlex *ngIf="leaders">
     <h2>Corporate Leadership</h2>
     <div fxLayout="column" fxLayoutGap="50px">
       <mat-list *ngFor="let leader of leaders" >
@@ -71,5 +71,8 @@
         </mat-list-item>
       </mat-list>
     </div>
+  </div>
+  <div fxFlex [hidden]="leaders">
+    <mat-spinner style="margin:0 auto;" mode="indeterminate"><h4>Loading . . . Please Wait</h4></mat-spinner>
   </div>
 </div>

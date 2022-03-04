@@ -26,7 +26,6 @@
       </mat-card>
     </div>
 
-
     <div fxFlex="40">
       <mat-list>
         <h1>Comments</h1>
@@ -43,6 +42,9 @@
         </mat-list-item>
       </mat-list>
     </div>
+  </div>
+  <div fxFlex [hidden]="dish">
+    <mat-spinner style="margin:0 auto;" mode="indeterminate"><h4>Loading . . . Please Wait</h4></mat-spinner>
   </div>
 
 </div>
