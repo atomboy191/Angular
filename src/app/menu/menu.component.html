@@ -17,7 +17,10 @@
     </mat-grid-list>
   </div>
   <div fxFlex [hidden]="dishes">
-    <mat-spinner style="margin:0 auto;" mode="indeterminate"><h4>Loading . . . Please Wait</h4></mat-spinner>
+    <mat-spinner style="margin:0 auto;" mode="indeterminate"></mat-spinner>
+    <div style="margin:0 auto;">
+    <h4>Loading . . . Please Wait</h4>
+    </div>
   </div>
   <!--
   <app-dish-detail [dish]="selectedDish"></app-dish-detail>
