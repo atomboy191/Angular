@@ -48,6 +48,34 @@
       <p>
         <mat-form-field class="half-width">
           <input matInput formControlName="firstName" placeholder="First Name" type="text" required>
+          <mat-error *ngIf="formErrors.firstName">
+            {{formErrors['firstName']}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="lastName" placeholder="Last Name" type="text" required>
+          <mat-error *ngIf="formErrors.lastName">
+            {{formErrors['lastName']}}
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="telNum" placeholder="Telephone" type="tel" required>
+          <mat-error *ngIf="formErrors.telNum">
+            {{formErrors['telNum']}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="email" placeholder="Email" type="email" email required>
+          <mat-error *ngIf="formErrors.email">
+            {{formErrors['email']}}
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <!-- <p>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="firstName" placeholder="First Name" type="text" required>
           <mat-error *ngIf="feedbackForm.get('firstName').hasError('required') && feedbackForm.get('firstName').touched">
             first name is required
           </mat-error>
@@ -72,7 +100,7 @@
             email is required
           </mat-error>
         </mat-form-field>
-      </p>
+      </p> -->
       <table class="form-size">
         <td>
           <mat-slide-toggle formControlName="agree">May we contact you?</mat-slide-toggle>

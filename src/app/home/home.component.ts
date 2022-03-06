@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
 import { PromotionService } from '../services/promotion.service';
@@ -16,18 +16,25 @@ export class HomeComponent implements OnInit {
   dish: Dish;
   promotion: Promotion;
   leader: Leader;
+  dishErrMsg: string;
+  promotionErrMsg: string;
+  leaderErrMsg: string;
 
   constructor(private promotionService: PromotionService,
     private dishService: DishService,
-    private leaderService: CorporateLeadersService) { }
+    private leaderService: CorporateLeadersService,
+    @Inject('BaseURL') private BaseURL) { }
 
   ngOnInit() {
     this.dishService.getFeaturedDish()
-      .subscribe((dish) => this.dish = dish)
+      .subscribe((dish) => this.dish = dish, 
+      (errMsg) => {this.dishErrMsg  = <any>errMsg; console.log("got error in Home:featuredDish")})
     this.promotionService.getFeaturedPromotion()
-      .subscribe((promotion) => this.promotion = promotion);
+      .subscribe((promotion) => this.promotion = promotion, 
+      (errMsg) => {this.promotionErrMsg  = <any>errMsg; console.log("got error in Menu:Promotion")});
     this.leaderService.getFeaturedLeader()
-      .subscribe((leader) => this.leader = leader);
+      .subscribe((leader) => this.leader = leader, 
+      (errMsg) => {this.leaderErrMsg  = <any>errMsg; console.log("got error in Menu:Leader")});
   }
 
   // ngOnInit() {
