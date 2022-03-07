@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Leader } from '../shared/leader';
 import { CorporateLeadersService } from '../services/corporate-leaders.service';
 
@@ -10,12 +10,15 @@ import { CorporateLeadersService } from '../services/corporate-leaders.service';
 export class AboutComponent implements OnInit {
 
   leaders: Leader[];
+  errMsg: string
 
-  constructor(private corporateLeadersService: CorporateLeadersService) { }
+  constructor(private corporateLeadersService: CorporateLeadersService,
+    @Inject('BaseURL') private BaseURL) { }
 
   ngOnInit() {
     this.corporateLeadersService.getLeaders()
-      .subscribe((leaders) => this.leaders = leaders);
+      .subscribe((leaders) => this.leaders = leaders,
+      (errMsg) => {this.errMsg  = <any>errMsg; console.log("got error in about")});
   }
 
 }

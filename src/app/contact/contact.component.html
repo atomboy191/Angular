@@ -38,12 +38,12 @@
 
   <div fxFlex fxFlexOffset="20px" class="form-size">
     <h3>Send us your feedback</h3>
-    <p>
+    <!-- <p>
     {{feedbackForm.value | json}} {{feedbackForm.status | json}}
     </p>
     <p>
     {{feedback | json}}
-    </p>
+    </p> -->
     <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
       <p>
         <mat-form-field class="half-width">
@@ -67,11 +67,17 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field class="half-width">
-          <input matInput formControlName="email" placeholder="Email" type="email" email required>
+          <input matInput formControlName="email" placeholder="Email" type="text" required>
           <mat-error *ngIf="formErrors.email">
             {{formErrors['email']}}
           </mat-error>
         </mat-form-field>
+        <!-- <mat-form-field class="half-width">
+          <input matInput placeholder="password" type="password" required>
+          <mat-error *ngIf="formErrors.email">
+            {{formErrors['email']}}
+          </mat-error>
+        </mat-form-field> -->
       </p>
       <!-- <p>
         <mat-form-field class="half-width">
